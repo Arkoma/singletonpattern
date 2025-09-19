@@ -1,24 +1,13 @@
 package com.singletonPattern;
 
-public class ChocolateBoiler {
+public enum ChocolateBoiler {
+    INSTANCE;
+
     private boolean empty;
     private boolean boiled;
-    private ChocolateBoiler() {
+    ChocolateBoiler() {
         empty = true;
         boiled = false;
-    }
-
-    private volatile static ChocolateBoiler instance;
-
-    public static ChocolateBoiler getInstance() {
-        if (instance == null) {
-            synchronized (ChocolateBoiler.class) {
-                if (instance == null) {
-                    instance = new ChocolateBoiler();
-                }
-            }
-        }
-        return instance;
     }
 
     public void fill() {
