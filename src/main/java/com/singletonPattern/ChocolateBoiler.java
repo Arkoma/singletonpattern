@@ -7,6 +7,20 @@ public class ChocolateBoiler {
         empty = true;
         boiled = false;
     }
+
+    private volatile static ChocolateBoiler instance;
+
+    public static ChocolateBoiler getInstance() {
+        if (instance == null) {
+            synchronized (ChocolateBoiler.class) {
+                if (instance == null) {
+                    instance = new ChocolateBoiler();
+                }
+            }
+        }
+        return instance;
+    }
+
     public void fill() {
         if (isEmpty()) {
             empty = false;
